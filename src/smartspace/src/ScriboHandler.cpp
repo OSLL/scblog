@@ -80,8 +80,9 @@ namespace SmartSpace
   {
     QList<Triple*> list;
 
-    list.append(createDefaultTriple(ACCOUNT_NAME,LOGIN,ACCOUNT_LOGIN));
-    list.append(createDefaultTriple(ACCOUNT_NAME,PASSWORD,ACCOUNT_PASSWORD));
+    list.append(createDefaultTriple(ACCOUNT_NAME, LOGIN, ACCOUNT_LOGIN));
+    list.append(createDefaultTriple(ACCOUNT_NAME, PASSWORD, ACCOUNT_PASSWORD));
+    list.append(createDefaultTriple(ACCOUNT_NAME, TYPE, ONLINE_ACCOUNT_TYPE));  // account type ???
 
     insert(list);
   }
