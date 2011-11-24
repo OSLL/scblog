@@ -140,7 +140,7 @@ namespace core
     text.append("Speaker is " + m_userData["is"]);
     text.append(" (email: " + m_userData["email"]);
     text.append("; phone: " + m_userData["phone"] + ";).");
-    text.append(" Presentation is available at: " + m_presentationData["url"]);
+    //text.append(" Presentation is available at: " + m_presentationData["url"]);
     text.append(" Keywords: " + m_presentationData["Keywords"]);
 
     setText(text);

@@ -102,6 +102,8 @@ namespace BlogService
     m_ljHandler->addCommentToOutputBuffer(comment);
     m_taskQueue.enqueue(&BlogService::CLjHandler::sendComment);
 
+
+
     performTask();
   }
 

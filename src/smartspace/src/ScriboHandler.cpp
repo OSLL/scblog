@@ -80,9 +80,9 @@ namespace SmartSpace
   {
     QList<Triple*> list;
 
-    list.append(createDefaultTriple(ACCOUNT_NAME, LOGIN, ACCOUNT_LOGIN));
-    list.append(createDefaultTriple(ACCOUNT_NAME, PASSWORD, ACCOUNT_PASSWORD));
-    list.append(createDefaultTriple(ACCOUNT_NAME, TYPE, ONLINE_ACCOUNT_TYPE));  // account type ???
+    list.append(createDefaultTriple(ACCOUNT_NAME,LOGIN,ACCOUNT_LOGIN));
+    list.append(createDefaultTriple(ACCOUNT_NAME,PASSWORD,ACCOUNT_PASSWORD));
+    list.append(createDefaultTriple(ACCOUNT_NAME,TYPE,ONLINE_ACCOUNT_TYPE));
 
     insert(list);
   }
@@ -111,6 +111,8 @@ namespace SmartSpace
 
     m_queryQueue.enqueue(qMakePair(query->objectName(),list));
     QTimer::singleShot(1,this, SLOT(scriboQuery()));
+
+    //replyToNotification(SmartSpace::SEND_COMMENT, "ok");
   }
 
   void CScriboHandler::loadPosts(QString accountName)
@@ -382,9 +384,14 @@ namespace SmartSpace
 
     foreach(QString person, m_relatedPersons)
     {
-      QString notification = NOTIFICATION + person;
+      //QString notification = NOTIFICATION + person;
+      QString notification = "Notification-" + person;
 
-      triples.push_back(createDefaultTriple(notification,predicate,message));
+      //triples.push_back(createDefaultTriple(notification,predicate,message));
+      triples.push_back(createLiteralTriple(notification, predicate + "Result", message));
+      qDebug() << "-------------------------------------------------------------------------------------------" << endl;
+      qDebug() << "Reply to notification >>> (" << notification << ", " << predicate + "Result" << ", " << message << ")";
+      qDebug() << "-------------------------------------------------------------------------------------------" << endl;
     }
 
     insert(triples);

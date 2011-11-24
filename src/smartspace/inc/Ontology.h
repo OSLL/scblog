@@ -47,8 +47,7 @@
 
 namespace SmartSpace
 {
-  // old predicates & notification
-  /*
+
   static const QString ACCOUNT_LOGIN = "osll";
   static const QString ACCOUNT_PASSWORD = "scblog1861";
 
@@ -68,6 +67,8 @@ namespace SmartSpace
   static const QString PRESENTATION_TITLE = "Title";
   static const QString KEYWORDS = "Keywords";
 
+  // old predicates
+  /*
   // Scribo Ontology
   static const QString BLOG_SERVICE_NAME ="NotificationSCLJ";
   static const QString ACCOUNT_NAME ="account-sclj";
@@ -96,38 +97,14 @@ namespace SmartSpace
   */
 
   // new preficates
-  static const QString ACCOUNT_LOGIN = "osll";
-  static const QString ACCOUNT_PASSWORD = "scblog1861";
-
-  static const QString ANY = "sib:any";
-  static const QString TYPE = "rdf:type";
-
-  // Overlay Ontology
-  static const QString DESCRIBE = "describe";
-
-  // Smart Conference Ontology
-  static const QString HAS_USER = "have";
-  static const QString HAS_NAME = "is";
-  static const QString EMAIL = "email";
-  static const QString PHONE = "phone";
-  static const QString HAS_PRESENTATION = "presents";
-  static const QString URL = "url";
-  static const QString PRESENTATION_TITLE = "Title";
-  static const QString KEYWORDS = "Keywords";
-
+  //
   // Scribo Ontology
-
-
-  // аккаунт пользователя (Person)
-
-  // фиксированное имя (часть онтологии), по которому клиенты SmartScribo
-  // могут получить доступ к онтологическим даннымs
-  static const QString ACCOUNT_NAME ="account-sclj";    //
+  static const QString ACCOUNT_NAME ="account-sclj"; //
   static const QString ONLINE_ACCOUNT_TYPE ="http://xmlns.com/foaf/0.1/OnlineAccount";
   static const QString LOGIN = "http://www.cs.karelia.ru/smartscribo#login";
   static const QString PASSWORD = "http://www.cs.karelia.ru/smartscribo#password";
 
-  static const QString PERSON_NAME ="person-sclj";  // сущность Person, содержит аккаунты
+  static const QString PERSON_NAME ="person-sclj"; //
 
   static const QString POST ="http://www.cs.karelia.ru/smartscribo#Post";
   static const QString COMMENT ="http://www.cs.karelia.ru/smartscribo#Comment";
@@ -137,14 +114,13 @@ namespace SmartSpace
   static const QString HAS_POST = "http://www.cs.karelia.ru/smartscribo#hasPost";
   static const QString POSTER = "http://www.cs.karelia.ru/smartscribo#poster";
 
-  static const QString SCRIBO_TYPE = "type";    // not used now
+  static const QString SCRIBO_TYPE = "type"; // not used now
 
-  // свойство, которое связывает person и аккаунт
-  static const QString ACCOUNT_TYPE = "http://xmlns.com/foaf/0.1/account";  // foaf_account
+  //
+  static const QString ACCOUNT_TYPE = "http://xmlns.com/foaf/0.1/account"; // foaf_account
   static const QString PERSON_INFORMATION = "http://www.cs.karelia.ru/smartscribo#personInformation";
 
   // Scribo Notifications
-  // константа используется для получения нотификацией блог-процессором.
   static const QString BLOG_SERVICE_NAME ="Notification-SCLJ";
   static const QString REFRESH_COMMENTS = "http://www.cs.karelia.ru/smartscribo#refreshComments";
   static const QString REFRESH_POSTS = "http://www.cs.karelia.ru/smartscribo#refreshPosts";
