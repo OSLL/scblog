@@ -237,7 +237,7 @@ namespace SmartSpace
 
     m_wqlQueryQueue.enqueue(qMakePair(el,query));
     QTimer::singleShot(1,this,SLOT(wqlQuery()));
-  }
+}
 
   void CSSHandler::wqlQuery()
   {

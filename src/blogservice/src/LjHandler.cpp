@@ -340,8 +340,6 @@ namespace BlogService
 
     m_postProcessor = &CLjHandler::checkSendingComment;
 
-
-
     sendRequest(request.toUtf8());
   }
 
