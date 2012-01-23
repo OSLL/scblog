@@ -75,4 +75,10 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>Qt</name>
+			<value>file:/usr/include/qt4</value>
+		</variable>
+	</variableList>
 </projectDescription>

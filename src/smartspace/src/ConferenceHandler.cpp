@@ -60,7 +60,7 @@ namespace SmartSpace
 
   CConferenceHandler::~CConferenceHandler()
   {
-    getNode()->unsubscribe(getSubscription(CONFERENCE_SUBSCRIPTION).data());
+    //getNode()->unsubscribe(getSubscription(CONFERENCE_SUBSCRIPTION).data());
   }
 
   void CConferenceHandler::subscribeToScheduleChanges()
@@ -239,7 +239,7 @@ namespace SmartSpace
 
     emit loadReportsDone(m_posts.values());
     m_posts.clear();///
-    emit transactionDone();
+    //emit transactionDone();
   }
 
   void CConferenceHandler::saveReport(QSharedPointer<core::CReport> report)

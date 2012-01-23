@@ -60,6 +60,11 @@ namespace SmartSpace
 
   CSSHandler::~CSSHandler()
   {
+    leave();
+  }
+
+  void CSSHandler::leave()
+  {
     m_node->leave();
   }
 

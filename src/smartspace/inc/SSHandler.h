@@ -96,6 +96,7 @@ namespace SmartSpace
     QList<Triple *> m_queryList;
 
     void join(QString sibUri);
+    void leave();
     void insert(Triple* triple);
     void insert(QList<Triple*> triplets);
     void remove(QList<Triple*> list);

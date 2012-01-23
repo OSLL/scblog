@@ -18,6 +18,7 @@ HEADERS       = core/inc/BlogObject.h \
                 core/inc/Comment.h \
                 core/inc/Id.h \
                 core/inc/ExitListener.h \
+                core/inc/Configurator.h \
                 blogservice/inc/LjHandler.h \
                 blogservice/inc/LjManager.h \
                 blogservice/inc/RequestCreator.h \
@@ -33,6 +34,7 @@ SOURCES       = core/src/BlogObject.cpp \
                 core/src/Comment.cpp \
                 core/src/Id.cpp \
                 core/src/ExitListener.cpp \                
+                core/src/Configurator.cpp \                
                 blogservice/src/LjHandler.cpp \
                 blogservice/src/LjManager.cpp \
                 blogservice/src/RequestCreator.cpp \

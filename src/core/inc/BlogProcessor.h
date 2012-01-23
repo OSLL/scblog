@@ -73,6 +73,7 @@ namespace core
     BlogService::CLjManager* m_ljManager;
     SmartSpace::CConferenceHandler* m_conferenceHandler;
     SmartSpace::CScriboHandler* m_scriboHandler;
+    QMap<QString, QString> m_configurationMap;
 
     QTimer* m_timer;
 
@@ -96,6 +97,11 @@ namespace core
     void storeBlogObject(CId id, QSharedPointer<IBlogObject> blogObject);
     void loadExistingLjPosts();
 
+    void initLjManager();
+    void initConferenceHandler();
+    void initScriboHandler();
+    void initUpdateByTimer();
+
   private slots:
 
     void reciveReports(QList<QSharedPointer<core::CReport> >);
@@ -109,7 +115,6 @@ namespace core
     void reciveLjPosts(QList<QSharedPointer<core::CPost> > posts);
 
   public:
-    CBlogProcessor();
     ~CBlogProcessor(){};
     
     void init();
