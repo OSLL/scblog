@@ -345,6 +345,8 @@ namespace BlogService
 
   void CLjHandler::processPosts(QString response)
   {
+    qDebug() << "CLjHandler::processPosts";
+
     CResponseParser parser(response);
     QList<QSharedPointer<core::CPost> > posts = parser.parseElements<core::CPost> ();
 
@@ -367,6 +369,8 @@ namespace BlogService
 
   void CLjHandler::getComments(QString response)
   {
+    qDebug() << "CLjHandler::getComments";
+
     m_postProcessor = &CLjHandler::processComments;
 
     QString journal = m_userName.replace('-', '_');

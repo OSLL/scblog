@@ -58,10 +58,8 @@ namespace SmartSpace
     Q_OBJECT
 
     QMap<QString, QSharedPointer<core::CReport> > m_posts;
-
     QMap<QString, QString> m_presentationsCache;
     QSet<QString> m_reports;
-    QSet<QString> m_reportsBuffer;
     void (CConferenceHandler::*m_postProcessor)(QList<Triple*> );
 
     virtual void postProcess(QList<Triple *> triples);
@@ -71,15 +69,9 @@ namespace SmartSpace
     void processUserProfile(QList<Triple *> triple);
     void processPresentation(QList<Triple *> triple);
     void recieveReports(QList<Triple *> triple);
-
-  private slots:
-    void refreshReportsRequest();
-    void checkExistingReports();
-    void checkReportsBuffer();
+    void loadReports();
 
   signals:
-    void transactionDone();
-
     void loadReportsDone(QList<QSharedPointer<core::CReport> > posts);
 
   public:
@@ -87,10 +79,7 @@ namespace SmartSpace
     CConferenceHandler(QString sibUri, QObject *parent = 0);
     ~CConferenceHandler();
     
-    void subscribeToScheduleChanges();
-    void loadReports();
-    void saveReport(QSharedPointer<core::CReport> report);
-
+    void checkExistingReports();
   }; // class CConferenceHandler
 } // namespace smartspace
 

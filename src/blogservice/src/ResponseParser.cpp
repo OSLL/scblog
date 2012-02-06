@@ -59,7 +59,7 @@ namespace BlogService
     MEMBERS_NAMES.insert(QString("body"), BlogService::BODY);
     MEMBERS_NAMES.insert(QString("dtalkid"), BlogService::ID);
     MEMBERS_NAMES.insert(QString("parentdtalkid"), BlogService::PARENT_ID);
-    MEMBERS_NAMES.insert(QString("eventtime"), BlogService::POST_DATE);
+    MEMBERS_NAMES.insert(QString("event_timestamp"), BlogService::POST_DATE);
     MEMBERS_NAMES.insert(QString("datepost"), BlogService::COMMENT_DATE);
     MEMBERS_NAMES.insert(QString("children"), BlogService::CHILD_COMMENT);
   }

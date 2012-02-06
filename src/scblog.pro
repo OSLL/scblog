@@ -5,6 +5,7 @@ QT            = core network xml
 CONFIG       += qt
 CONFIG       += console link_pkgconfig
 CONFIG       -= app_bundle
+CXXFLAGS     += -g -O0
 PKGCONFIG     = libwhiteboard dbus-glib-1
 MOC_DIR       = bin
 OBJECTS_DIR   = bin

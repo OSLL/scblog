@@ -104,7 +104,7 @@ namespace core
     QObject::connect(m_conferenceHandler, SIGNAL(loadReportsDone(QList<QSharedPointer<core::CReport> >)), this,
       SLOT(reciveReports(QList<QSharedPointer<core::CReport> >)));
 
-    m_conferenceHandler->loadReports();
+    m_conferenceHandler->checkExistingReports();
   }
 
   void CBlogProcessor::initScriboHandler()
@@ -140,12 +140,16 @@ namespace core
   {
     qDebug() << "CBlogProcessor::reciveReports";
 
+    m_reports.clear();
+    foreach(QSharedPointer<core::CReport> post, posts)
+    {
+      qDebug()  << post->title();
+      m_reports.push_back(post);
+    }
+
     m_conferenceHandler->leave();
 
     initScriboHandler();
-
-    foreach (QSharedPointer<core::CReport> object, posts)
-      m_scriboHandler->sendBlogObject(object);
 
     m_scriboHandler->replyToNotification(SmartSpace::REFRESH_POSTS, "ok");
     m_scriboHandler->loadPosts(SmartSpace::ACCOUNT_NAME);
@@ -221,7 +225,23 @@ namespace core
   {
     qDebug() << "CBlogProcessor::reciveSsPosts";
 
+    QList<QString> existingReports;
+
+    foreach(QSharedPointer<core::CReport> report, m_reports)
+      foreach(QSharedPointer<core::CPost> post, posts)
+        if (post->title().toUtf8() == report->title().toUtf8())
+          existingReports.push_back(report->title());
+   
+    foreach(QSharedPointer<core::CReport> report, m_reports)
+      if (!existingReports.count(report->title()))
+      {
+        m_scriboHandler->sendBlogObject(report);
+        posts.push_back(report);
+      }
+
     foreach(QSharedPointer<core::CPost> post, posts)
+    {
+      qDebug() << post->title();
       if(!checkBlogObjectContains(*post->id()))
       {
         qDebug() << "CBlogProcessor::newPost";
@@ -238,6 +258,7 @@ namespace core
         else
           m_ljManager->sendPost(post);
       }
+    }
   }
 
   void CBlogProcessor::refreshComments()

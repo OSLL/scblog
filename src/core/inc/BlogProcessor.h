@@ -50,6 +50,7 @@
 #include "ScriboHandler.h"
 #include "ConferenceHandler.h"
 #include "Post.h"
+#include "Report.h"
 #include "Comment.h"
 
 namespace core
@@ -87,6 +88,7 @@ namespace core
     int m_postsCounter;
 
     QMap<QString, QSharedPointer<core::CPost> > m_existingLjPosts;
+    QList<QSharedPointer<CReport> > m_reports;
 
     bool setParent(QSharedPointer<CComment> comment, bool copyPostId);
     void saveCommentToSs();
@@ -95,7 +97,7 @@ namespace core
     void printSerializedMap();
     CId getFullId(const CId id);
     void storeBlogObject(CId id, QSharedPointer<IBlogObject> blogObject);
-    void loadExistingLjPosts();
+
 
     void initLjManager();
     void initConferenceHandler();
@@ -113,6 +115,7 @@ namespace core
     void storeComment(core::CId id, QSharedPointer<core::CComment> comment);
     void refreshByTimer();
     void reciveLjPosts(QList<QSharedPointer<core::CPost> > posts);
+    void loadExistingLjPosts();
 
   public:
     ~CBlogProcessor(){};

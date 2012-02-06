@@ -52,68 +52,11 @@ namespace SmartSpace
   CConferenceHandler::CConferenceHandler(QString sibUri, QObject *parent) :
     CSSHandler(sibUri, parent)
   {
-    connect(this,SIGNAL(transactionDone()),this,SLOT(checkReportsBuffer()));
-
     m_postProcessor = NULL;
-    //subscribeToScheduleChanges();
   }
 
   CConferenceHandler::~CConferenceHandler()
   {
-    //getNode()->unsubscribe(getSubscription(CONFERENCE_SUBSCRIPTION).data());
-  }
-
-  void CConferenceHandler::subscribeToScheduleChanges()
-  {
-    QSharedPointer<TemplateSubscription> subscription = creatreSubscription(CONFERENCE_SUBSCRIPTION);
-
-    connect(subscription.data(), SIGNAL(indication()), this, SLOT(refreshReportsRequest()) );
-
-    QList<Triple *> list = createTripleList(createDefaultTriple(ANY, HAS_USER, ANY));
-    subscription->subscribe(list);
-
-    while(list.count())
-      delete list.takeFirst();
-  }
-
-  void CConferenceHandler::refreshReportsRequest()
-  {
-    QSharedPointer<TemplateSubscription> subscription = getSubscription(sender()->objectName());
-
-    if(!subscription.isNull())
-    {
-      QList<Triple *> results = subscription->results();
-      QSet<QString> reports;
-      QList<Triple *>::iterator it;
-
-      for(it = results.begin(); it != results.end(); ++it)
-      {
-        reports.insert((*it)->object().node());
-
-        qDebug() << (*it)->subject().node();
-        qDebug() << (*it)->predicate().node();
-        qDebug() << (*it)->object().node();
-      }
-
-      if (isReady())
-      {
-        m_reports = reports;
-        QTimer::singleShot(1,this,SLOT(checkExistingReports()));
-      }
-      else
-        m_reportsBuffer += reports;
-    }
-  }
-
-  void CConferenceHandler::checkReportsBuffer()
-  {
-    if (!m_reportsBuffer.isEmpty())
-    {
-      m_reports = m_reportsBuffer;
-      m_reportsBuffer.clear();
-
-      checkExistingReports();
-    }
   }
 
   void CConferenceHandler::checkExistingReports()
@@ -121,7 +64,7 @@ namespace SmartSpace
     qDebug() << "checkExistingReports";
 
     m_queryList.clear();
-    m_queryList.append(createDefaultTriple(ANY, DESCRIBE, ANY));
+    m_queryList.append(createDefaultTriple(ANY, HAS_USER, ANY));
 
     m_postProcessor = &CConferenceHandler::recieveReports;
     QTimer::singleShot(1, this, SLOT(query()));
@@ -131,18 +74,11 @@ namespace SmartSpace
   {
     qDebug() << "recieveReports";
 
-    QSet<QString> userIds;
-
     for(QList<Triple *>::iterator it = triples.begin(); it != triples.end(); ++it)
-      userIds.insert((*it)->object().node());
-
-    m_reports.subtract(userIds);
+      m_reports.insert((*it)->object().node());
 
     if (m_reports.isEmpty())
-    {
       m_postProcessor = NULL;
-      emit transactionDone();
-    }
     else
       loadReports();
   }
@@ -238,13 +174,7 @@ namespace SmartSpace
     m_postProcessor = NULL;
 
     emit loadReportsDone(m_posts.values());
-    m_posts.clear();///
-    //emit transactionDone();
-  }
-
-  void CConferenceHandler::saveReport(QSharedPointer<core::CReport> report)
-  {
-    insert(report->scTriplets());
+    m_posts.clear();
   }
 
 } // namespace smartspace
