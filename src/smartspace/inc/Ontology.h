@@ -125,7 +125,7 @@ namespace SmartSpace
   static const QString REFRESH_COMMENTS = "http://www.cs.karelia.ru/smartscribo#refreshComments";
   static const QString REFRESH_POSTS = "http://www.cs.karelia.ru/smartscribo#refreshPosts";
   static const QString SEND_COMMENT = "http://www.cs.karelia.ru/smartscribo#sendComment";
-  static const QString COMMENT_ID = "http://www.cs.karelia.ru/smartscribo#comId";
+  static const QString COMMENT_ID = "http://www.cs.karelia.ru/smartscribo#commId";
   static const QString PARENT_ID = "http://www.cs.karelia.ru/smartscribo#parId";
   static const QString NOTIFICATION = "http://www.cs.karelia.ru/smartscribo#Notification";
 
